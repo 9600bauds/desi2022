@@ -53,27 +53,28 @@ public class PronosticoBuscarController {
     public String submit( @ModelAttribute("formBean") @Valid PronosticoBuscarForm formBean, BindingResult result, ModelMap modelo, @RequestParam String action) throws Excepcion {
     	if(action.equals("Buscar"))
     	{
-    		long idCiudad = formBean.getCiudadSeleccionada();
-    		Ciudad laCiudad = servicioCiudad.getById(idCiudad);
-    		
-    		modelo.addAttribute("nombreCiudad", laCiudad.getNombre());
-    		
-    		ClimaActual elClima = servicioClimaActual.getByCiudadId(idCiudad);
-    		modelo.addAttribute(elClima);
-
-    		// Por motivos de simplicidad, como no sé en qué fecha se va a calificar este TP, voy a usar una fecha fija.
-    		// Si la aplicación fuera "de verdad", habría muchos pronósticos y se usaría la fecha actual.
-    		// Pero para solamente tener que generar 10 casos de prueba, voy a hacer de cuenta que hoy es 31/12/2021.
-    		Date fechaInicio = Date.valueOf("2021-01-01");
-    		Date fechaFinal = Date.valueOf("2022-01-10");
-    		
-    		//List<Pronostico> resultados = servicioPronostico.getAll();
-    		List<Pronostico> resultados = servicioPronostico.pronosticosPorCiudadYFecha(laCiudad, fechaInicio, fechaFinal);
-    		modelo.addAttribute("resultados", resultados);
-    		
-    		//modelo.addAttribute("fechaInicio", fechaInicio);
-    		//modelo.addAttribute("fechaFinal", fechaFinal);
-    		
+    		Long idCiudad = formBean.getCiudadSeleccionada();
+    		if(idCiudad != null) {
+	    		Ciudad laCiudad = servicioCiudad.getById(idCiudad);
+	    		
+	    		modelo.addAttribute("nombreCiudad", laCiudad.getNombre());
+	    		
+	    		ClimaActual elClima = servicioClimaActual.getByCiudadId(idCiudad);
+	    		modelo.addAttribute("climaActual", elClima);
+	
+	    		// Por motivos de simplicidad, como no sé en qué fecha se va a calificar este TP, voy a usar una fecha fija.
+	    		// Si la aplicación fuera "de verdad", habría muchos pronósticos y se usaría la fecha actual.
+	    		// Pero para solamente tener que generar 10 casos de prueba, voy a hacer de cuenta que hoy es 31/12/2021.
+	    		Date fechaInicio = Date.valueOf("2021-01-01");
+	    		Date fechaFinal = Date.valueOf("2022-01-10");
+	    		
+	    		//List<Pronostico> resultados = servicioPronostico.getAll();
+	    		List<Pronostico> resultados = servicioPronostico.pronosticosPorCiudadYFecha(laCiudad, fechaInicio, fechaFinal);
+	    		modelo.addAttribute("resultados", resultados);
+	    		
+	    		//modelo.addAttribute("fechaInicio", fechaInicio);
+	    		//modelo.addAttribute("fechaFinal", fechaFinal);
+    		}
     		return "pronosticoBuscar";
     	}
     	
