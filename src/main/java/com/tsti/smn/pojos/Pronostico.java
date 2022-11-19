@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Pronostico {
@@ -21,6 +22,7 @@ public class Pronostico {
 	
 	private int cantLluvia;
 	
+	@Size(max = 500)
 	private String descripcion;
 	
 	@ManyToOne
