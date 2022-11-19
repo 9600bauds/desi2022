@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title><span th:text="#{pronostico.ver_titulo}"></span></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+</head>
+<body>
+	<div class="starter-template">
+        <h1><span  th:text="#{empresa}" /></h1>
+        <h2>
+            <span th:text="#{pronostico.ver_header1}"></span>
+            <span th:text=" ${{nombreCiudad}} "></span>
+            <span th:text="#{pronostico.ver_header2}"></span>
+            <span th:text=" ${{pronostico.fecha}}"></span>
+        </h2>
+    </div>
+
+    <div class="center">
+		<span th:if="${pronostico}">
+			<span th:text="#{pronostico.ver_problluvia}"></span>: <span th:text="${{pronostico.probLluvia}}"></span>mm<br>
+			<span th:text="#{pronostico.ver_cantlluvia}"></span>: <span th:text="${{pronostico.cantLluvia}}"></span>%<br>
+			<span th:text="#{pronostico.ver_desc}"></span>: <span th:text="${{pronostico.descripcion}}"></span><br>
+		</span>
+    </div>
+    
+    <div class="center">
+    	<br>
+    	<a th:href="@{/pronosticoBuscar}"><label th:text="#{pronostico.volver}"/></a>
+	</div>
+
+</body>
+</html>	
