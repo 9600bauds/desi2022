@@ -12,7 +12,14 @@ public class ClimaActualServiceImpl implements ClimaActualService {
 	IClimaActualRepo repo;
 	
 	public ClimaActual getByCiudadId(Long id) {
-		return repo.climaActualFromCityID(id).get();
+		return repo.climaActualFromCiudadID(id).get();
 	}
+	
+	//TODO:
+	//(definirlo acá y en ClimaActualService.java, guiarse con PersonaServiceImpl)
+	//Falta hacer un save()
+	//Falta hacer un getById()
+	//Falta hacer un deleteByid()
+	//Falta hacer un filtro
 
 }

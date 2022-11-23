@@ -10,7 +10,8 @@ import com.tsti.smn.pojos.ClimaActual;
 
 @Repository
 public interface IClimaActualRepo extends JpaRepository<ClimaActual, Long>  {
-
+	Optional<ClimaActual> findById(Long id);
+	
 	@Query("SELECT c FROM ClimaActual c WHERE c.ciudad.id = :id")
-	Optional<ClimaActual> climaActualFromCityID(Long id);
+	Optional<ClimaActual> climaActualFromCiudadID(Long id);
 }
